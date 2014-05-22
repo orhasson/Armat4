@@ -24,7 +24,7 @@ a player can be only be assigned to one event using specific id.
 
 
 2: Preparation Stage:
-=========================
+========================
 
 2.1: General Information:
 
@@ -45,12 +45,13 @@ Also he has to place predetermined matzofim on the map, only the admin can put m
 
 
 2.3: For the Player:
+
 The player need to register using a name, password(need to be >=6 numbers) and event number that was given by the admin.
 if you leave after registering you can always log in again using your registered information you filled in during registration.
 
 
 3: Racing Example
-======================
+=====================
 After the application was installed on the racers and admin phones, and it was verified that the internet and GPS are both turned on.
 
 The Admin starts by creating an instance. He has to enter his Application using Admin mode and putting matzofim on the map.
