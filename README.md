@@ -33,7 +33,7 @@ Event number: a unique number to diffrinciate between racing. it means that a pl
 for them to be in the same race they must both be with the same event number.
 
 
-2.2: For the Admin:
+2.2: For the Administrator:
 
 The admin needs to create an event by login to Admin mode using these settings.
 user: Admin
