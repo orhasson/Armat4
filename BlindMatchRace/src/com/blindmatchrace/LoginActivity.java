@@ -182,7 +182,7 @@ public class LoginActivity extends Activity {
 			etPass.setError(getString(R.string.error_field_required));
 			focusView = etPass;
 			cancel = true;
-		} else if (mPassword.length() < 6) {
+		} else if (mPassword.length() < 4) {
 			etPass.setError(getString(R.string.error_invalid_password));
 			focusView = etPass;
 			cancel = true;

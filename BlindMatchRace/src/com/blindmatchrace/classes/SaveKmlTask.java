@@ -125,9 +125,10 @@ public class SaveKmlTask extends AsyncTask<String, Integer, Map<Long, LatLng>> {
 				kmlBuilder.append("\t\t\t<Icon>\n\t\t\t\t<href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href>\n\t\t\t</Icon>\n\t\t</IconStyle>\n\t</Style>\n");
 
 				// Starting time stamp.
-				kmlBuilder.append("\t<Placemark>\n\t\t<name>FROM</name>\n\t\t<TimeStamp>\n");
+				kmlBuilder.append("\t<Placemark>\n\t\t<name>FROM</name>\n\t\t\n<Description>\n");
 				long starttime = entry.getKey();
-				kmlBuilder.append("\t\t\t<when>" + String.valueOf(ConvertTime(starttime)) + "</when>\n\t\t</TimeStamp>\n");
+				
+				kmlBuilder.append("timedate: "+String.valueOf(ConvertTime(starttime))+" </Description>\n\n\t\t<TimeStamp>\n\t\t\t<when>" + String.valueOf(ConvertTime(starttime)) + "</when>\n\t\t</TimeStamp>\n");
 				kmlBuilder.append("\t\t<styleUrl>#style1</styleUrl>\n\t\t<Point>\n\t\t\t<coordinates>");
 
 				// Starting coordinate.
@@ -135,16 +136,16 @@ public class SaveKmlTask extends AsyncTask<String, Integer, Map<Long, LatLng>> {
 				double startLng = entry.getValue().longitude;
 				kmlBuilder.append(String.valueOf(startLng) + "," + String.valueOf(startLat) + ",0.000000");
 				kmlBuilder.append("</coordinates>\n\t\t</Point>\n\t</Placemark>\n");
-
+				int i = 1;
 				// Inserts all of path's coordinates.
-				while (iter.hasNext()) {
+				while (iter.hasNext()) { 
 					entry = (Map.Entry<Long, LatLng>) iter.next();
 					if (!iter.hasNext()) {
 						break;
 					}
-					kmlBuilder.append("\t<Placemark>\n\t\t<TimeStamp>\n");
+					kmlBuilder.append("\t<Placemark>\n\t\t<Name>"+i++ +"</Name>\n\t\t<Description>timedate: ");
 					long time = entry.getKey();
-					kmlBuilder.append("\t\t\t<when>" + String.valueOf(ConvertTime(time)) + "</when>\n\t\t</TimeStamp>\n");
+					kmlBuilder.append(String.valueOf(ConvertTime(time))+"</Description>\n<TimeStamp>\n\t\t\t<when>" + String.valueOf(ConvertTime(time)) + "</when>\n\t\t</TimeStamp>\n");
 					kmlBuilder.append("\t\t<styleUrl>#style2</styleUrl>\n\t\t<Point>\n\t\t\t<coordinates>");
 
 					double lat = entry.getValue().latitude;
@@ -154,9 +155,9 @@ public class SaveKmlTask extends AsyncTask<String, Integer, Map<Long, LatLng>> {
 				}
 
 				// Inserts the latest time stamp.
-				kmlBuilder.append("\t<Placemark>\n\t\t<name>TO</name>\n\t\t<TimeStamp>\n");
+				kmlBuilder.append("\t<Placemark>\n\t\t<name>TO</name>\n\t\t<Description>timedate: ");
 				long time = entry.getKey();
-				kmlBuilder.append("\t\t\t<when>" + String.valueOf(ConvertTime(time)) + "</when>\n\t\t</TimeStamp>\n");
+				kmlBuilder.append(String.valueOf(ConvertTime(time)) +"</Description>\n\t\t\t<TimeStamp>\n\t\t\t<when>" + String.valueOf(ConvertTime(time)) + "</when>\n\t\t</TimeStamp>\n");
 				kmlBuilder.append("\t\t<styleUrl>#style3</styleUrl>\n\t\t<Point>\n\t\t\t<coordinates>");
 
 				// Inserts the latest destination reached.
